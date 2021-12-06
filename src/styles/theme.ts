@@ -10,7 +10,7 @@ export const theme = extendTheme({
       },
     },
     light: {
-      gray: {
+      info: {
         '300': '#DADADA',
         '100': '#F5F8FA',
       },
