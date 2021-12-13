@@ -1,12 +1,18 @@
-import { Box, Image, Flex, Text, Grid, HStack } from "@chakra-ui/react";
+import Prismic from '@prismicio/client';
+import { Box, Image, Flex, Text, Heading } from "@chakra-ui/react";
 import React from "react";
 import { Header } from "../components/Header";
+import { Options } from "../components/Options";
+import { Separator } from "../components/Separator";
+import { Slider } from "../components/Slider";
+import { GetStaticProps } from 'next';
+import { getPrismicClient } from '../services/prismic';
 
-export default function Home() {
+
+export default function Home({ continents }) {
   return (
    <>
       <Header />
-
       <Box height={335}>
         <Image position='absolute' src='/Background.png' alt='Airplane' />
         <Flex marginX='32' position='relative' align='center' justify='space-between'>
@@ -39,31 +45,44 @@ export default function Home() {
           </Box>
         </Flex>
       </Box>
+      <Options />
+      <Separator />
 
-      <Box mt='100px'>
-        <HStack>
-          <Flex flexDirection='column' align='center' justify='center'>
-            <Image src='/cocktail.png' alt='Airplane' />
-            <Text mt='24px'>vida noturna</Text>
-          </Flex>
-          <Flex flexDirection='column' align='center' justify='center'>
-            <Image src='/beach.png' alt='Airplane' />
-            <Text mt='24px'>praia</Text>
-          </Flex>
-          <Flex flexDirection='column' align='center' justify='center'>
-            <Image src='/building.png' alt='Airplane' />
-            <Text mt='24px'>moderno</Text>
-          </Flex>
-          <Flex flexDirection='column' align='center' justify='center'>
-            <Image src='/museum.png' alt='Airplane' />
-            <Text mt='36px'>clássico</Text>
-          </Flex>
-          <Flex flexDirection='column' align='center' justify='center'>
-            <Image src='/earth.png' alt='Airplane' />
-            <Text mt='24px'>e mais...</Text>
-          </Flex>
-        </HStack>
-      </Box>
+      <Heading
+        textAlign="center"
+        fontWeight="500"
+        mb={["5","14"]}
+        fontSize={["lg",
+        "3xl",
+        "4xl"]}
+      >
+        Vamos nessa?<br/>Então escolha seu continente
+      </Heading>
+
+      <Slider continents={continents} />
    </>  
   );
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const prismic = getPrismicClient();
+
+  const response = await prismic.query(
+    [Prismic.Predicates.at('document.type', 'continent')]
+  )
+
+  const continents = response.results.map(continent => {
+    return {
+      slug: continent.uid,
+      title: continent.data.title,
+      summary: continent.data.summary,
+      image: continent.data.slider_image.url
+    }
+  })
+
+  return {
+    props: {
+      continents
+    }
+  }
 }
