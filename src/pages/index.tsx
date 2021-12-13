@@ -1,4 +1,4 @@
-import { Box, Image, Flex, Text } from "@chakra-ui/react";
+import { Box, Image, Flex, Text, Grid, HStack } from "@chakra-ui/react";
 import React from "react";
 import { Header } from "../components/Header";
 
@@ -38,7 +38,32 @@ export default function Home() {
             <Image src='/Airplane.png' alt='Airplane'/>
           </Box>
         </Flex>
-      </Box>  
+      </Box>
+
+      <Box mt='100px'>
+        <HStack>
+          <Flex flexDirection='column' align='center' justify='center'>
+            <Image src='/cocktail.png' alt='Airplane' />
+            <Text mt='24px'>vida noturna</Text>
+          </Flex>
+          <Flex flexDirection='column' align='center' justify='center'>
+            <Image src='/beach.png' alt='Airplane' />
+            <Text mt='24px'>praia</Text>
+          </Flex>
+          <Flex flexDirection='column' align='center' justify='center'>
+            <Image src='/building.png' alt='Airplane' />
+            <Text mt='24px'>moderno</Text>
+          </Flex>
+          <Flex flexDirection='column' align='center' justify='center'>
+            <Image src='/museum.png' alt='Airplane' />
+            <Text mt='36px'>clássico</Text>
+          </Flex>
+          <Flex flexDirection='column' align='center' justify='center'>
+            <Image src='/earth.png' alt='Airplane' />
+            <Text mt='24px'>e mais...</Text>
+          </Flex>
+        </HStack>
+      </Box>
    </>  
   );
 }
