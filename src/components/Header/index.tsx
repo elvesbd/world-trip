@@ -1,23 +1,34 @@
-import { Flex } from '@chakra-ui/react'
-import Image from 'next/image'
-import logo from '../../../public/Logo.png'
+import { Flex, Grid, Image } from '@chakra-ui/react'
 
 export function Header() {
   return (
     <Flex 
-      as="header" 
+      bg='white'  
       w='100%' 
-      maxWidth={1440} 
-      h='20'
-      marginX='auto'
-      paddingX='6'
+      as="header" 
+      mx='auto'
+      px='1rem'
+      h={['50px', '100px']}
       align='center'
-      justifyContent='center'
+      justify='center'
     >
-      <Image 
-        src={logo}
-        alt='World Trip' 
-      />
+     <Grid
+      h='100%'
+      mx='auto'
+      w='100%'
+      maxW='1160px'
+      templateColumns='repeat(3, 1fr)'
+      justifyContent='center'
+      alignItems='center'
+     >
+        <Image
+          w={['81px', '184px']}
+          src='/Logo.png'
+          alt='World Trip'
+          justifySelf='center'
+          gridColumn='2'
+        />
+      </Grid>
     </Flex>
   )
 }
