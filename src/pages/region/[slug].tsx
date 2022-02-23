@@ -1,4 +1,5 @@
 import { Flex } from "@chakra-ui/react";
+import Cities from "../../components/Cities";
 import Content from "../../components/Content";
 import { Header } from "../../components/Header";
 import RegionBanner from "../../components/RegionBanner";
@@ -17,6 +18,7 @@ export default function Region() {
         px='1rem'
       >
         <Content />
+        <Cities />
       </Flex>
     </Flex>
   )
