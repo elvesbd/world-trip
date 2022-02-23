@@ -1,5 +1,4 @@
 import { Grid, Text } from "@chakra-ui/react";
-import Cities from "../Cities";
 import InfoRegion from "../InfoRegion";
 
 export default function Content() {
